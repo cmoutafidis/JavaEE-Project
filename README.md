@@ -1,6 +1,8 @@
+# Introduction
+This is a basic Java EE project, created for learning purposes. We are using a Payara Micro Server to deploy our project to.
+
 # Build
-mvn clean package && docker build -t com.inspectus/hello-todo .
+mvn package
 
 # RUN
-
-docker rm -f hello-todo || true && docker run -d -p 8080:8080 -p 4848:4848 --name hello-todo com.inspectus/hello-todo 
+java -jar path/to/payara/payara-micro-5.183.jar --deploy path/to/project/root/target/hello-todo.war --port 8080
