@@ -6,24 +6,21 @@
 package com.inspectus.entity;
 
 import java.time.LocalDate;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 
 /**
  *
  * @author c.moutafidis
  */
 @Entity
+@Table(name = "todo")
 public class Todo {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String task;
-    private LocalDate dudeDate;
+    private LocalDate dueDate;
     private boolean isCompleted;
     private LocalDate dateCompleted;
     private LocalDate dateCreated;
@@ -49,12 +46,12 @@ public class Todo {
         this.task = task;
     }
 
-    public LocalDate getDudeDate() {
-        return dudeDate;
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
-    public void setDudeDate(LocalDate dudeDate) {
-        this.dudeDate = dudeDate;
+    public void setDudeDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 
     public boolean isIsCompleted() {

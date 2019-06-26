@@ -36,7 +36,7 @@ public class TodoService {
     }
     
     public List<Todo> getTodos(){
-        return this.entityManager.createQuery("SELECT t FROM Todo t", Todo.class).getResultList();
+        return this.entityManager.createNativeQuery("SELECT t FROM Todo t", Todo.class).getResultList();
     }
     
 }
