@@ -36,7 +36,7 @@ public class TodoService {
     }
     
     public List<Todo> getTodos(){
-        return this.entityManager.createNativeQuery("SELECT t FROM Todo t", Todo.class).getResultList();
+        return this.entityManager.createNativeQuery("SELECT id, task, isCompleted, dateCreated, dueDate, dateCompleted FROM todo", Todo.class).getResultList();
     }
     
 }
