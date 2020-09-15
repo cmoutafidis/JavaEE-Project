@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: "app"
+    image: "jboss/wildfly"
+    environment:
+      - WILDFLY_USER=wildflyadmin
+      - WILDFLY_PASS=72MGhh8HD3QQb
+      - DB_NAME=palermo
+      - DB_USER=root
+      - DB_PASS=supersecret
+      - DB_URI=db:3306
+    depends_on:
+      - db
+    ports:
+      - "8080:8080" # application
+      - "9990:9990" # admin console
+    build: docker/wildfly
+
+  db:
+    container_name: "db"
+    image: "mysql"
+    environment:
+      - MYSQL_DATABASE=palermo
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_ROOT_PASSWORD=supersecret
+    volumes:
+      - mysql-init:/docker-entrypoint-initdb.d/ # init database
+      - mysql-data:/var/lib/mysql/              # data storage
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql-data:
+  mysql-init:
+
+networks:
+  default:
+    driver: bridge

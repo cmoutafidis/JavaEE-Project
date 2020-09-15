@@ -18,7 +18,7 @@ import javax.transaction.Transactional;
 @Transactional
 public class TodoService {
     
-    @PersistenceContext(unitName="my-datasource-name")
+    @PersistenceContext(unitName="palermoDS")
     EntityManager entityManager;
     
     public Todo createTodo(Todo todo){
