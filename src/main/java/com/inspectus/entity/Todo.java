@@ -63,7 +63,7 @@ public class Todo {
         return dueDate;
     }
 
-    public void setDudeDate(LocalDate dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
