@@ -7,56 +7,51 @@ package com.inspectus.rest;
 
 import com.inspectus.entity.Todo;
 import com.inspectus.service.TodoService;
-import java.util.List;
+
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
- *
  * @author c.moutafidis
  */
 @Path("todo")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class TodoRest {
-    
+
     @Inject
     TodoService todoService;
-    
+
     @Path("new")
     @POST
-    public Response createTodo(Todo todo){
+    public Response createTodo(final Todo todo) {
         this.todoService.createTodo(todo);
-        
+
         return Response.ok(todo).build();
     }
-    
-    
+
+
     @Path("update")
     @POST
-    public Response updateTodo(Todo todo){
+    public Response updateTodo(final Todo todo) {
         this.todoService.updateTodo(todo);
-        
+
         return Response.ok(todo).build();
     }
-    
+
     @Path("{id}")
     @GET
-    public Todo getTodo(@PathParam("id")long id){
+    public Todo getTodo(@PathParam("id") final long id) {
         return this.todoService.findTodoById(id);
     }
-    
+
     @Path("list")
     @GET
-    public List<Todo> getTodos(){
+    public List<Todo> getTodos() {
         return this.todoService.getTodos();
     }
-    
+
 }

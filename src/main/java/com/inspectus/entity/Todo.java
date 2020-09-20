@@ -5,22 +5,21 @@
  */
 package com.inspectus.entity;
 
-import java.time.LocalDate;
 import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 /**
- *
  * @author c.moutafidis
  */
 @Entity
 @Table(name = "todo")
 public class Todo {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -33,64 +32,63 @@ public class Todo {
     @FutureOrPresent(message = "Due date must be in the present or future")
     @JsonbDateFormat(value = "yyyy-MM-dd")
     private LocalDate dueDate;
-    
+
     private boolean isCompleted;
     private LocalDate dateCompleted;
     private LocalDate dateCreated;
-    
+
     @PrePersist
-    private void init(){
+    private void init() {
         this.setDateCreated(LocalDate.now());
     }
-    
+
     public long getId() {
-        return id;
+        return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
     public String getTask() {
-        return task;
+        return this.task;
     }
 
-    public void setTask(String task) {
+    public void setTask(final String task) {
         this.task = task;
     }
 
     public LocalDate getDueDate() {
-        return dueDate;
+        return this.dueDate;
     }
 
-    public void setDueDate(LocalDate dueDate) {
+    public void setDueDate(final LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
     public boolean isIsCompleted() {
-        return isCompleted;
+        return this.isCompleted;
     }
 
-    public void setIsCompleted(boolean isCompleted) {
+    public void setIsCompleted(final boolean isCompleted) {
         this.isCompleted = isCompleted;
     }
 
     public LocalDate getDateCompleted() {
-        return dateCompleted;
+        return this.dateCompleted;
     }
 
-    public void setDateCompleted(LocalDate dateCompleted) {
+    public void setDateCompleted(final LocalDate dateCompleted) {
         this.dateCompleted = dateCompleted;
     }
 
     public LocalDate getDateCreated() {
-        return dateCreated;
+        return this.dateCreated;
     }
 
-    public void setDateCreated(LocalDate dateCreated) {
+    public void setDateCreated(final LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
-    
-    
-    
+
+
 }

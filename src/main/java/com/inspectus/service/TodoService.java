@@ -6,37 +6,37 @@
 package com.inspectus.service;
 
 import com.inspectus.entity.Todo;
-import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
- *
  * @author c.moutafidis
  */
 @Transactional
 public class TodoService {
-    
-    @PersistenceContext(unitName="palermoDS")
+
+    @PersistenceContext(unitName = "palermoDS")
     EntityManager entityManager;
-    
-    public Todo createTodo(Todo todo){
+
+    public Todo createTodo(final Todo todo) {
         this.entityManager.persist(todo);
         return todo;
     }
-    
-    public Todo updateTodo(Todo todo){
+
+    public Todo updateTodo(final Todo todo) {
         this.entityManager.merge(todo);
         return todo;
     }
-    
-    public Todo findTodoById(long id){
+
+    public Todo findTodoById(final long id) {
         return this.entityManager.find(Todo.class, id);
     }
-    
-    public List<Todo> getTodos(){
+
+    public List<Todo> getTodos() {
         return this.entityManager.createNativeQuery("SELECT id, task, isCompleted, dateCreated, dueDate, dateCompleted FROM todo", Todo.class).getResultList();
     }
-    
+
 }
