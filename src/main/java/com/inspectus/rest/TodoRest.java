@@ -54,4 +54,13 @@ public class TodoRest {
         return this.todoService.getTodos();
     }
 
+    @Path("status")
+    @POST
+    public Response markAsComplete(@QueryParam("id") final long id) {
+        final Todo todo = this.todoService.findTodoById(id);
+        todo.setIsCompleted(true);
+        this.todoService.updateTodo(todo);
+        return Response.ok(todo).build();
+    }
+
 }
